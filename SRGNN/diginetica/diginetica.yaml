@@ -1,0 +1,28 @@
+field_separator: "\t"
+seq_separator: " "
+USER_ID_FIELD: session_id
+ITEM_ID_FIELD: item_id
+TIME_FIELD: timestamp
+NEG_PREFIX: neg_
+ITEM_LIST_LENGTH_FIELD: item_length
+LIST_SUFFIX: _list
+MAX_ITEM_LIST_LENGTH: 50
+POSITION_FIELD: position_id
+load_col:
+    inter: [session_id, item_id, timestamp]
+
+# training and evaluation
+epochs: 500
+train_batch_size: 4096
+eval_batch_size: 40960
+valid_metric: NDCG@10
+eval_args:
+    split: {'LS': 'valid_and_test'}
+    mode: full
+    order: TO
+
+# disable negative sampling
+train_neg_sample_args: ~
+
+# model
+embedding_size: 128
